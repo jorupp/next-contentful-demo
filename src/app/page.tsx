@@ -6,16 +6,16 @@ export default async function Home() {
     space: process.env.CONTENTFUL_SPACE_ID!,
     accessToken: process.env.CONTENTFUL_API_READ_KEY!,
   });
-  const topics = await client.getEntries({
+  const content = await client.getEntries({
     content_type: process.env.CONTENT_TYPE!,
   });
 
   return (
     <main className={styles.main}>
       <ul>
-        {topics.items.map((topic) => (
-          <li key={topic.sys.id}>
-            <a href={`/topic/${topic.fields.slug}`}>{topic.fields.title?.toString()}</a>
+        {content.items.map((item) => (
+          <li key={item.sys.id}>
+            {item.fields.title?.toString()}
           </li>
         ))}
       </ul>
